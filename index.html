@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <title>Zomboid Randomizer</title>
+    <link rel="icon" type="image/x-icon"
+        href="https://preview.redd.it/new-shortcut-spiffo-v0-1hzpd29eapb81.png?auto=webp&s=c6571bf6f2379b947979da9e95631635b9eb189e">
+</head>
+
+<style>
+    body {
+        background-color: #363945;
+        font-family: Arial, Helvetica, sans-serif;
+        color: lightgrey;
+    }
+
+    td {
+        outline: 3px solid black;
+    }
+
+    tr td {
+        padding: 10px;
+    }
+
+</style>
+
+<script>
+    const zombGoals = [
+        'Find 10 car keys.',
+        'Kill 500 zombies.',
+        'Cook a fish on a campfire.',
+        'Hotwire a vehicle.',
+        'Loot a survivor house.',
+        'Find a generator.',
+        'Read the generator magazine.',
+        'Reach carpentry level 3.',
+        'Find a slegehammer or a wood axe.',
+        'Loot a Police Station.',
+        'Reach aiming level 3.',
+        'Bandage yourself or others three times.',
+        'Reach foraging level 1.',
+        'Find every map (Muldraugh, Rosewood, etc).',
+        'Collect 200 cigarettes.',
+        'Fully barricade a house (planks and sheets).',
+        'Collect 1 of each pill: antibiotics, beta blockers, painkillers, sleeping tablets.'
+    ];
+
+  
+
+    function generateTable() {
+        bingoGoals = zombGoals.slice();
+        
+        for (var i = 1; i < 4; i++) {
+            for (var y = 1; y < 4; y++) {
+                var id = 'r' + i + 'c' + y;
+                var cellToUpdate = document.getElementById(id);
+
+                // Select goal
+                var goal = bingoGoals[Math.floor(Math.random() * bingoGoals.length)];
+                cellToUpdate.innerHTML = goal;
+
+                // Remove the entry from the array
+                var index = bingoGoals.indexOf(goal);
+                if (index !== -1) {
+                    bingoGoals.splice(index, 1);
+                }
+            }
+        }
+    }
+
+    function generateSeed() {
+        var goals = [];
+        var numericSeed = '';
+
+        for (var i = 1; i < 4; i++) {
+            for (var y = 1; y < 4; y++) {
+                var id = 'r' + i + 'c' + y;
+                var cell = document.getElementById(id);
+
+                goals.push(cell.innerHTML);
+            }
+        }
+
+        for (var z = 0; z < goals.length; z++) {
+            numericSeed += zombGoals.indexOf(goals[z]) + '/';
+            console.log(zombGoals[zombGoals.indexOf(goals[z])]);
+            console.log(numericSeed)
+        }
+        
+        document.getElementById('seedOutput').innerHTML = numericSeed;
+
+    }
+</script>
+
+<body>
+    <div
+        style="justify-content: center; color: whitesmoke; text-shadow: 3px 3px 3px black; font-size: 300%; display: fixed">
+        Zomboid Randomizer
+        <img src="https://pzwiki.net/w/images/2/22/Spiffo250.png" width="5%" />
+    </div>
+
+    <div>
+        <table style="display:flex">
+            <tr>
+                <td id="r1c1"></td>
+                <td id="r1c2"></td>
+                <td id="r1c3"></td>
+            </tr>
+
+            <tr>
+                <td id="r2c1"></td>
+                <td id="r2c2"></td>
+                <td id="r2c3"></td>
+            </tr>
+
+            <tr>
+                <td id="r3c1"></td>
+                <td id="r3c2"></td>
+                <td id="r3c3"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <button style="vertical-align:middle" onclick="generateTable()"><span>Generate</span></button>
+
+        <button style="vertical-align:middle" onclick="generateSeed()"><span>Generate Seed</span></button>
+
+        Seed Input: <input />
+        <div id="seedOutput"></div>
+    </div>
+</body>
+
+</html>
