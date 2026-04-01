@@ -1,133 +1,720 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Zomboid Randomizer</title>
-    <link rel="icon" type="image/x-icon"
-        href="https://preview.redd.it/new-shortcut-spiffo-v0-1hzpd29eapb81.png?auto=webp&s=c6571bf6f2379b947979da9e95631635b9eb189e">
-</head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Manor of Ashenfall</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-    body {
-        background-color: #363945;
-        font-family: Arial, Helvetica, sans-serif;
-        color: lightgrey;
-    }
+  :root {
+    --bg: #0a0806;
+    --bg2: #0f0c09;
+    --parchment: #c9a96e;
+    --parchment-dim: #8a6d42;
+    --parchment-pale: #e8d5a3;
+    --blood: #7a1c1c;
+    --blood-bright: #a02020;
+    --ash: #4a4540;
+    --ash-light: #6b6258;
+    --gold: #c8a84b;
+    --gold-dim: #7a6530;
+    --fog: rgba(200,168,75,0.06);
+    --glow: rgba(200,168,75,0.15);
+  }
 
-    td {
-        outline: 3px solid black;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    tr td {
-        padding: 10px;
-    }
+  html { scroll-behavior: smooth; }
 
+  body {
+    background-color: var(--bg);
+    color: var(--parchment);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.85;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 60%, rgba(122,28,28,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(10,8,6,0.9) 0%, transparent 100%);
+    z-index: 1;
+  }
+
+  .manor-silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 900px;
+    opacity: 0.12;
+    z-index: 0;
+  }
+
+  .fog-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, rgba(10,8,6,0.95) 0%, transparent 100%);
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    animation: fadeInUp 1.8s ease forwards;
+  }
+
+  .overline {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    color: var(--parchment-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeInUp 1.4s ease 0.3s forwards;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.2rem, 6vw, 5rem);
+    font-weight: 700;
+    color: var(--parchment-pale);
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    text-shadow:
+      0 0 40px rgba(200,168,75,0.3),
+      0 0 80px rgba(122,28,28,0.2);
+    opacity: 0;
+    animation: fadeInUp 1.4s ease 0.5s forwards;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    color: var(--blood-bright);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInUp 1.4s ease 0.8s forwards;
+    margin-bottom: 3rem;
+  }
+
+  .scroll-hint {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--ash-light);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInUp 1.4s ease 1.4s forwards, pulse 3s ease 2.5s infinite;
+  }
+
+  /* Decorative divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 3rem auto;
+    max-width: 400px;
+    opacity: 0.6;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  }
+
+  .divider-glyph {
+    color: var(--gold-dim);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* Main content */
+  .content {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* Characters section */
+  .characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+
+  .character-card {
+    border: 1px solid rgba(200,168,75,0.12);
+    background: linear-gradient(135deg, rgba(200,168,75,0.04) 0%, transparent 100%);
+    padding: 1.4rem 1.6rem;
+    position: relative;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .character-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--blood);
+    opacity: 0.6;
+  }
+
+  .character-card:hover {
+    border-color: rgba(200,168,75,0.25);
+    background: linear-gradient(135deg, rgba(200,168,75,0.07) 0%, transparent 100%);
+  }
+
+  .character-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--parchment-pale);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .character-title {
+    font-size: 0.85rem;
+    color: var(--blood-bright);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .character-desc {
+    font-size: 0.9rem;
+    color: var(--parchment-dim);
+    line-height: 1.6;
+  }
+
+  /* Lore box */
+  .lore-box {
+    border: 1px solid rgba(122,28,28,0.35);
+    background: linear-gradient(135deg, rgba(122,28,28,0.08) 0%, transparent 60%);
+    padding: 2rem 2.4rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .lore-box::before {
+    content: '❧';
+    position: absolute;
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    padding: 0 0.8rem;
+    color: var(--blood);
+    font-size: 1.2rem;
+  }
+
+  /* Act sections */
+  .act {
+    margin: 4rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .act.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .act-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--blood-bright);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--parchment-pale);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 0 20px rgba(200,168,75,0.15);
+  }
+
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.8rem;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+    color: var(--parchment);
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  em {
+    color: var(--parchment-pale);
+    font-style: italic;
+  }
+
+  strong {
+    color: var(--parchment-pale);
+    font-weight: 500;
+  }
+
+  /* Aftermath cards */
+  .aftermath-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .aftermath-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgba(200,168,75,0.08);
+    background: rgba(200,168,75,0.02);
+    transition: border-color 0.3s;
+  }
+
+  .aftermath-item:hover {
+    border-color: rgba(200,168,75,0.18);
+  }
+
+  .aftermath-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    opacity: 0.8;
+  }
+
+  .aftermath-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--parchment-dim);
+  }
+
+  .aftermath-text strong {
+    color: var(--parchment-pale);
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Section heading */
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-heading h2 {
+    white-space: nowrap;
+  }
+
+  .section-heading-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(200,168,75,0.2), transparent);
+  }
+
+  /* Drop cap */
+  .dropcap::first-letter {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4.5rem;
+    line-height: 0.75;
+    float: left;
+    margin-right: 0.12em;
+    margin-top: 0.08em;
+    color: var(--blood-bright);
+    text-shadow: 0 0 20px rgba(122,28,28,0.5);
+  }
+
+  /* Candle flicker effect on some decorative elements */
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    42% { opacity: 0.95; }
+    43% { opacity: 0.7; }
+    44% { opacity: 0.95; }
+    85% { opacity: 0.95; }
+    86% { opacity: 0.6; }
+    87% { opacity: 0.95; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  .flicker {
+    animation: flicker 6s ease-in-out infinite;
+  }
+
+  /* Candle decorations */
+  .candles {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    opacity: 0.5;
+    font-size: 1.5rem;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(200,168,75,0.08);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--ash-light);
+    text-transform: uppercase;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--blood); border-radius: 0; }
+
+  /* Blood-red highlight quote */
+  blockquote {
+    border-left: 2px solid var(--blood);
+    padding: 0.8rem 1.5rem;
+    margin: 1.5rem 0;
+    background: rgba(122,28,28,0.06);
+    font-style: italic;
+    color: var(--parchment-pale);
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .characters-grid { grid-template-columns: 1fr; }
+    .content { padding: 0 1.2rem 4rem; }
+  }
 </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <svg class="manor-silhouette" viewBox="0 0 900 350" xmlns="http://www.w3.org/2000/svg" fill="var(--parchment)">
+    <!-- Manor silhouette -->
+    <rect x="100" y="200" width="700" height="150"/>
+    <rect x="180" y="150" width="120" height="60"/>
+    <rect x="390" y="100" width="120" height="110"/>
+    <rect x="600" y="160" width="100" height="50"/>
+    <!-- Towers -->
+    <rect x="100" y="80" width="60" height="130"/>
+    <rect x="740" y="100" width="60" height="110"/>
+    <!-- Tower tops -->
+    <polygon points="100,80 130,30 160,80"/>
+    <polygon points="740,100 770,50 800,100"/>
+    <polygon points="390,100 450,50 510,100"/>
+    <!-- Windows -->
+    <rect x="200" y="230" width="20" height="30" fill="rgba(122,28,28,0.5)"/>
+    <rect x="260" y="230" width="20" height="30" fill="rgba(122,28,28,0.3)"/>
+    <rect x="420" y="230" width="20" height="30" fill="rgba(200,168,75,0.4)"/>
+    <rect x="480" y="230" width="20" height="30" fill="rgba(122,28,28,0.5)"/>
+    <rect x="620" y="230" width="20" height="30" fill="rgba(122,28,28,0.3)"/>
+    <rect x="680" y="230" width="20" height="30" fill="rgba(200,168,75,0.3)"/>
+    <!-- Door -->
+    <rect x="415" y="285" width="40" height="65"/>
+  </svg>
+  <div class="fog-layer"></div>
+  <div class="hero-content">
+    <p class="overline">A World of Warcraft Story Arc</p>
+    <h1>The Manor of<br>Ashenfall</h1>
+    <p class="subtitle">Blood &nbsp;·&nbsp; Entropy &nbsp;·&nbsp; Reckoning</p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-glyph">⚔</div>
+      <div class="divider-line"></div>
+    </div>
+    <p class="scroll-hint">Descend</p>
+  </div>
+</section>
+
+<!-- Main Content -->
+<main class="content">
+
+  <!-- Characters -->
+  <div class="act" id="characters">
+    <div class="section-heading">
+      <h2>The Players</h2>
+      <div class="section-heading-line"></div>
+    </div>
+
+    <div class="characters-grid">
+      <div class="character-card">
+        <div class="character-name">Ortheon</div>
+        <div class="character-title">Death Knight</div>
+        <div class="character-desc">Patient as a grave. He has sworn to end Castiel's life — on his own terms, at a time of his choosing. He does not hurry. He does not forget.</div>
+      </div>
+      <div class="character-card">
+        <div class="character-name">Myrcella</div>
+        <div class="character-title">Wealthy Scrivener</div>
+        <div class="character-desc">Afflicted by a bad luck curse she doesn't understand and cannot shake. She copied something she shouldn't have, and the world has been punishing her for it ever since.</div>
+      </div>
+      <div class="character-card">
+        <div class="character-name">Castiel</div>
+        <div class="character-title">Worgen Priest · Ex-Scarlet Crusader</div>
+        <div class="character-desc">Carrying guilt, a slipping affliction, and the knowledge that a Death Knight has sworn his death. He has been running for a long time. He is tired of running.</div>
+      </div>
+      <div class="character-card">
+        <div class="character-name">Zoongar</div>
+        <div class="character-title">Cleric</div>
+        <div class="character-desc">Contracted alongside Castiel to exorcise a haunting. Professional, capable, and entirely unprepared for the company he finds himself in.</div>
+      </div>
+      <div class="character-card">
+        <div class="character-name">Garm</div>
+        <div class="character-title">Half-Orc Warlock</div>
+        <div class="character-desc">Holding a cursed object of Myrcella's — tasked with understanding it. He doesn't know yet that the object is an active ritual anchor, or that something inside the manor already knows he has it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph flicker">🕯</div><div class="divider-line"></div></div>
+
+  <!-- The Curse -->
+  <div class="act" id="curse">
+    <div class="section-heading">
+      <h2>The Curse</h2>
+      <div class="section-heading-line"></div>
+    </div>
+    <div class="act-label">Origin · Lady Serafine Verathas</div>
+
+    <p class="dropcap">The manor belonged to <strong>Lady Serafine Verathas</strong>, a Gilnean noblewoman and secret practitioner of entropy magic — a forbidden discipline that siphons luck and fortune from living souls and funnels it back to the caster. She lived obscenely well. Everyone around her slowly didn't.</p>
+
+    <p>She died inside the manor before her ritual could be completed, and her spirit anchored itself to the unfinished work. The ritual has been running in a diminished loop ever since, bleeding entropy into anyone who stays too long — or who touches the wrong thing.</p>
+
+    <div class="lore-box">
+      <p>Years ago, Myrcella was contracted to scribe documents at the manor. She was thorough and professional and she had no idea what she was copying. A passage from Verathas's grimoire made it into her work. <em>The act of transcribing it bound her to the entropy loop.</em> She has been bleeding luck ever since, feeding the ritual from a distance like a slow drain she couldn't find the plug for.</p>
+    </div>
+
+    <p>She took one of her cursed personal objects to Garm before pursuing the manor angle, hoping a warlock's read might tell her something while she investigated in person. It was a reasonable plan. She didn't know the object was an external anchor point for the same ritual — still active, still hungry, tethered to her and now sitting in Garm's hands.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">⚰</div><div class="divider-line"></div></div>
+
+  <!-- Act I -->
+  <div class="act" id="act1">
+    <div class="act-label">Act I</div>
+    <h2>Wrong Place, Worse Time</h2>
+
+    <p class="dropcap">Castiel and Zoongar arrive at the manor first. Their contract is straightforward: investigate reports of a haunting, perform an exorcism, get paid. The early signs are textbook — cold spots, objects displaced, whispers at the edge of hearing. Unpleasant, but manageable.</p>
+
+    <p>Then a servant who admitted them dies in a freak accident. A stumble. A fall. Wrong angle, wrong stone. Bad luck, seemingly.</p>
+
+    <p>It isn't.</p>
+
+    <p>Ortheon and Myrcella arrive shortly after. Myrcella is at the end of her rope — the Light hasn't touched her curse, conventional remedies have done nothing, and she is out of options. She reached out to Ortheon because he operates in spaces that the living find uncomfortable. He came because it was interesting, and because Myrcella asked.</p>
+
+    <blockquote>Castiel is in the entrance hall when they walk in. He sees Ortheon and goes still. The fur along his neck rises. Years of distance collapse in an instant and none of it was enough. Ortheon looks at him the way a man looks at something he intends to finish later — no heat, no urgency, just a cold acknowledgment that the matter is still open.</blockquote>
+
+    <p>The silence lasts long enough to be its own conversation.</p>
+
+    <p>Ortheon breaks it. His terms are simple: whatever is happening in this manor gets dealt with first. Castiel answers for what he did after. He won't let unfinished business cheat him out of a proper reckoning, and he won't let Castiel die to anything other than him. Castiel has no leverage and knows it. He agrees, because he has no other option, and the agreement tastes like ash.</p>
+
+    <p>Zoongar has no idea what just happened. Nobody explains it to him.</p>
+
+    <p>The group compares notes. Castiel and Zoongar's haunting and Myrcella's curse are clearly tangled — same manor, same era, too close to be coincidence. Myrcella mentions Garm: that she left a cursed object with him, hoping he could get a warlock's read while she came here. It seemed like a reasonable parallel approach at the time. They move deeper into the manor.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph flicker">🕯</div><div class="divider-line"></div></div>
+
+  <!-- Act II -->
+  <div class="act" id="act2">
+    <div class="act-label">Act II</div>
+    <h2>The House Eats at Them</h2>
+
+    <p class="dropcap">The entropy field is active and the party's presence is feeding it. Myrcella's tether to the ritual makes it worse — she is a live wire and the manor knows it. The bad luck starts cascading. It isn't random. The manor finds the gaps.</p>
+
+    <p>Zoongar's holy magic misfires at a critical moment — a ward he sets destabilises instead of holding, opening a room they had sealed. Garm's warlock pact stutters in a way that unsettles even him when Myrcella reaches him by messenger. Castiel's grip on his worgen affliction begins to slip. The manor is old Gilnean stonework and the curse in the walls rhymes badly with the curse in his blood. He is aware of it happening and cannot stop it. He says nothing.</p>
+
+    <p>Ortheon notices. He says nothing either.</p>
+
+    <p>He is, notably, the most stable person in the building. He is already dead. Entropy has nothing to take from him — no luck to drain, no fortune to siphon. The manor doesn't know what to do with him, and that makes him useful in a way that nobody is comfortable acknowledging. Least of all Castiel, who would rather be competent than protected.</p>
+
+    <p>They find the ritual chamber beneath the manor. The grimoire is still open on a stone plinth. Candles that should have guttered out decades ago are still burning. The ritual circle is incomplete but <em>active</em>, maintained by the tether running through Myrcella.</p>
+
+    <blockquote>Myrcella looks at the walls. Her handwriting is there. The passage she copied years ago, inscribed in stone, in her own hand, as though it was always part of the manor. As though she put it there herself. She didn't. She did.</blockquote>
+
+    <p>They understand the shape of it now. The ghost and the curse are the same problem. You cannot solve one without the other. And the cursed object with Garm is an external anchor point — as long as it sits outside the manor, uncontrolled, the ritual has a loose thread that cannot be tied off from inside.</p>
+
+    <p>They need Garm here. Myrcella sends word: <em>Come to the manor. Bring the object. Don't put it down, don't try to destroy it, don't let anyone else touch it. Come now.</em></p>
+
+    <p>Garm, who has already noticed the object behaving strangely and now finally has a reason why, comes.</p>
+
+    <p>Verathas manifests before he arrives. She does not shriek. She does not rage. She materialises at the edge of the ritual circle with the composure of a woman who has been waiting a long time and finds the wait nearly over. Cold. Lucid. Aristocratic. She regards the assembled group the way a noblewoman regards a minor inconvenience in her sitting room.</p>
+
+    <p>She has been waiting for Myrcella. The scrivener is the final component. If the ritual completes, Myrcella stays — locked into the manor, into the loop, feeding it for the next century while Verathas walks back into the world wearing someone else's life.</p>
+
+    <p>Verathas is not interested in negotiating. She begins.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph">⚔</div><div class="divider-line"></div></div>
+
+  <!-- Act III -->
+  <div class="act" id="act3">
+    <div class="act-label">Act III</div>
+    <h2>The Reckoning</h2>
+
+    <p class="dropcap">Garm arrives mid-collapse. He walks into a manor where the walls are humming with active ritual magic, a composed ghost is attempting to permanently soul-anchor his friend, a Death Knight is the calmest person present, and a worgen priest is visibly losing a fight with himself. The cursed object in his hands flares the moment he crosses the threshold. The ritual chamber reacts from two floors below. Verathas reacts too — a crack in her composure, just for a moment. The anchor is here. She moves to accelerate.</p>
+
+    <p>They don't let her.</p>
+
+    <h3>The Formation</h3>
+
+    <p><strong>Ortheon</strong> puts himself between Verathas and Myrcella. He's the only one the entropy field cannot touch, the only one who can hold her attention without being dismantled. He is not a subtle instrument. He doesn't need to be. He needs to be immovable, and he is.</p>
+
+    <p><strong>Castiel and Zoongar</strong> work the exorcism they were contracted for — now with full context. This isn't a haunting, it's a ritual anchor, and the exorcism has to be threaded through the ritual's own structure to unravel it from the inside. Delicate work under bad conditions. Castiel is running out of time with his affliction and he knows it.</p>
+
+    <p><strong>Myrcella and Garm</strong> take the ritual apart from both ends. Myrcella understands the written component — she copied it once, she can unpick it now, even with her hands shaking. Garm works the cursed object from the warlock angle, severing the external anchor thread by thread. Between them they are dismantling the engine while it is still running.</p>
+
+    <h3>The Breaking Point</h3>
+
+    <p>Verathas pushes. The entropy field spikes. Zoongar's next ward holds — barely. Ortheon takes a hit that would have killed something living and doesn't move. And Castiel loses it.</p>
+
+    <p>The worgen affliction breaks through. It isn't dramatic. It's ugly and fast and wrong — a priest coming apart at the seams in a haunted ritual chamber because the curse in the walls found the one in his blood and pulled. He goes feral. He is dangerous. He is also going to bring the entire exorcism down with him if he isn't stopped.</p>
+
+    <blockquote>Ortheon stops him. It's quick and brutal and deeply impersonal — a Death Knight putting down a threat, not a man making a choice. Non-lethal, because Ortheon decides it is. Not because Castiel deserves it. He pins him, holds him until the worst passes, and returns to his position without a word.<br><br><em>You don't get to die here. That's mine.</em></blockquote>
+
+    <p>The exorcism completes. The ritual collapses inward. Verathas does not go quietly — she fractures rather than disperses, a shriek of entropy that washes through the chamber and then is gone. The candles die. The circle goes dark.</p>
+
+    <p>The manor starts coming apart. They move.</p>
+
+    <p>Before they're out, Ortheon absorbs the remaining entropy fragment — the last thread of the ritual that has nowhere to drain now that the anchor is broken. It needs somewhere to go or it rebounds into Myrcella. He takes it. He's already dead. He has already carried worse. It settles into him like a cold stone, and he doesn't mention it.</p>
+
+    <p>They get out.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-glyph flicker">🕯</div><div class="divider-line"></div></div>
+
+  <!-- Aftermath -->
+  <div class="act" id="aftermath">
+    <div class="section-heading">
+      <h2>Aftermath</h2>
+      <div class="section-heading-line"></div>
+    </div>
+
+    <p>The manor becomes rubble. The grey morning says nothing. Five people stand in the wreckage of something that should have been simple, and none of them are unchanged.</p>
+
+    <div class="aftermath-grid">
+      <div class="aftermath-item">
+        <div class="aftermath-icon">📜</div>
+        <div class="aftermath-text">
+          <strong>Myrcella</strong>
+          The curse is broken. She feels, for the first time in years, like nothing bad is about to happen. She doesn't fully trust it yet. She is a professional scrivener. She has copied a great many things. She begins, quietly, to wonder what else she may have transcribed without knowing what it was.
+        </div>
+      </div>
+      <div class="aftermath-item">
+        <div class="aftermath-icon">🐺</div>
+        <div class="aftermath-text">
+          <strong>Castiel</strong>
+          Alive. Affliction back under control. The grudge is exactly where it was. Ortheon let him live on Ortheon's terms, not his. In some ways that is worse than a fight would have been. The debt is still open. The reckoning is still coming. He just doesn't know when.
+        </div>
+      </div>
+      <div class="aftermath-item">
+        <div class="aftermath-icon">⚔</div>
+        <div class="aftermath-text">
+          <strong>Ortheon</strong>
+          Carries an entropy fragment. Minor, contained, inert — for now. He doesn't mention it to anyone. It's one more weight on a dead man, and dead men carry what they carry.
+        </div>
+      </div>
+      <div class="aftermath-item">
+        <div class="aftermath-icon">🔮</div>
+        <div class="aftermath-text">
+          <strong>Garm</strong>
+          Got an exceptionally clean read on active ritual entropy magic. Cleaner than it should have been for someone just holding an object at the edge of the effect. Something in the ritual noticed him looking. He's not certain, but he's fairly sure something looked back.
+        </div>
+      </div>
+      <div class="aftermath-item">
+        <div class="aftermath-icon">✝</div>
+        <div class="aftermath-text">
+          <strong>Zoongar</strong>
+          Completed his contract. The ghost is exorcised. He is going to have a great many questions about what just happened between Ortheon and Castiel, and nobody is going to answer them satisfactorily.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  The Manor of Ashenfall &nbsp;·&nbsp; A Story Arc &nbsp;·&nbsp; World of Warcraft
+</footer>
 
 <script>
-    const zombGoals = [
-        'Find 10 car keys.',
-        'Kill 500 zombies.',
-        'Cook a fish on a campfire.',
-        'Hotwire a vehicle.',
-        'Loot a survivor house.',
-        'Find a generator.',
-        'Read the generator magazine.',
-        'Reach carpentry level 3.',
-        'Find a slegehammer or a wood axe.',
-        'Loot a Police Station.',
-        'Reach aiming level 3.',
-        'Bandage yourself or others three times.',
-        'Reach foraging level 1.',
-        'Find every map (Muldraugh, Rosewood, etc).',
-        'Collect 200 cigarettes.',
-        'Fully barricade a house (planks and sheets).',
-        'Collect 1 of each pill: antibiotics, beta blockers, painkillers, sleeping tablets.'
-    ];
+  // Intersection Observer for scroll animations
+  const acts = document.querySelectorAll('.act');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08 });
 
-  
-
-    function generateTable() {
-        bingoGoals = zombGoals.slice();
-        
-        for (var i = 1; i < 4; i++) {
-            for (var y = 1; y < 4; y++) {
-                var id = 'r' + i + 'c' + y;
-                var cellToUpdate = document.getElementById(id);
-
-                // Select goal
-                var goal = bingoGoals[Math.floor(Math.random() * bingoGoals.length)];
-                cellToUpdate.innerHTML = goal;
-
-                // Remove the entry from the array
-                var index = bingoGoals.indexOf(goal);
-                if (index !== -1) {
-                    bingoGoals.splice(index, 1);
-                }
-            }
-        }
-    }
-
-    function generateSeed() {
-        var goals = [];
-        var numericSeed = '';
-
-        for (var i = 1; i < 4; i++) {
-            for (var y = 1; y < 4; y++) {
-                var id = 'r' + i + 'c' + y;
-                var cell = document.getElementById(id);
-
-                goals.push(cell.innerHTML);
-            }
-        }
-
-        for (var z = 0; z < goals.length; z++) {
-            numericSeed += zombGoals.indexOf(goals[z]) + '/';
-            console.log(zombGoals[zombGoals.indexOf(goals[z])]);
-            console.log(numericSeed)
-        }
-        
-        document.getElementById('seedOutput').innerHTML = numericSeed;
-
-    }
+  acts.forEach(act => observer.observe(act));
 </script>
 
-<body>
-    <div
-        style="justify-content: center; color: whitesmoke; text-shadow: 3px 3px 3px black; font-size: 300%; display: fixed">
-        Zomboid Randomizer
-        <img src="https://pzwiki.net/w/images/2/22/Spiffo250.png" width="5%" />
-    </div>
-
-    <div>
-        <table style="display:flex">
-            <tr>
-                <td id="r1c1"></td>
-                <td id="r1c2"></td>
-                <td id="r1c3"></td>
-            </tr>
-
-            <tr>
-                <td id="r2c1"></td>
-                <td id="r2c2"></td>
-                <td id="r2c3"></td>
-            </tr>
-
-            <tr>
-                <td id="r3c1"></td>
-                <td id="r3c2"></td>
-                <td id="r3c3"></td>
-            </tr>
-        </table>
-    </div>
-
-    <div>
-        <button style="vertical-align:middle" onclick="generateTable()"><span>Generate</span></button>
-
-        <button style="vertical-align:middle" onclick="generateSeed()"><span>Generate Seed</span></button>
-
-        Seed Input: <input />
-        <div id="seedOutput"></div>
-    </div>
 </body>
-
 </html>
