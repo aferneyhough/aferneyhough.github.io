@@ -1,31 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Lads — Weapon Progression</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE LADS — Weapon Progression</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="styles.css" rel="stylesheet"><link href="guide-source/images/lads-crest.svg" rel="icon" type="image/svg+xml">
+<link href="styles.css" rel="stylesheet">
+<link href="guide-source/images/lads-crest.svg" rel="icon" type="image/svg+xml">
 <style>
-.weapon-page{max-width:1180px;margin:auto;padding:48px 24px 90px}.weapon-hero{padding:42px;border:1px solid rgba(217,173,88,.25);background:linear-gradient(135deg,rgba(20,31,43,.94),rgba(10,16,23,.94)),url('guide-source/images/weapon-progression-background.svg') center/cover;margin-bottom:28px}.weapon-hero h1{font:800 clamp(34px,6vw,58px) Cinzel;color:#f0d18d;margin:8px 0}.weapon-hero p{max-width:850px;color:#b8c1ca;line-height:1.75}.jump-nav{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 38px}.jump-nav a{padding:9px 13px;border:1px solid rgba(217,173,88,.25);color:#e9d6ae;font:700 11px Inter;letter-spacing:1px}.jump-nav a:hover{border-color:#d9ad58;background:rgba(217,173,88,.08)}.weapon-section{margin:48px 0}.weapon-section h2{font:700 clamp(24px,3vw,34px) Cinzel;color:#f0d18d;margin:0 0 8px}.weapon-section .meta{color:#d9ad58;font:800 10px Inter;letter-spacing:2px;margin-bottom:12px}.weapon-section .desc{color:#aeb8c2;line-height:1.7;margin:0 0 18px}.table-wrap{overflow-x:auto;border:1px solid rgba(217,173,88,.18);background:#101821}table{width:100%;border-collapse:collapse;min-width:760px}th{text-align:left;padding:13px 14px;background:#172330;color:#d9ad58;font:800 10px Inter;letter-spacing:1.5px}td{padding:14px;border-top:1px solid rgba(255,255,255,.06);color:#c8d0d7;font:13px/1.5 Inter;vertical-align:top}tr:hover td{background:rgba(217,173,88,.035)}.item-link{color:#f2d08a;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(242,208,138,.35)}.item-link:hover{color:#fff0c4;border-color:#fff0c4}.callout{border-left:3px solid #d9ad58;background:#17212b;padding:16px 18px;color:#b8c1ca;line-height:1.7;margin:18px 0 0}.route{color:#f0d18d;font-weight:700}@media(max-width:650px){.weapon-page{padding:28px 14px 70px}.weapon-hero{padding:28px 20px}}
+.weapon-page{max-width:1180px;margin:auto;padding:48px 24px 90px}
+.weapon-hero{padding:42px;border:1px solid rgba(217,173,88,.25);background:linear-gradient(135deg,rgba(20,31,43,.92),rgba(10,16,23,.9)),url('guide-source/images/weapon-progression-background.svg') center/cover;margin-bottom:28px}
+.weapon-hero h1{font:800 clamp(34px,6vw,58px) Cinzel;color:#f0d18d;margin:8px 0}
+.weapon-hero p{max-width:850px;color:#b8c1ca;line-height:1.75}
+.jump-nav{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 38px}
+.jump-nav a{padding:9px 13px;border:1px solid rgba(217,173,88,.25);color:#e9d6ae;font:700 11px Inter;letter-spacing:1px;text-decoration:none}
+.jump-nav a:hover{border-color:#d9ad58;background:rgba(217,173,88,.08)}
+.weapon-section{margin:48px 0}
+.weapon-section h2{font:700 clamp(24px,3vw,34px) Cinzel;color:#f0d18d;margin:0 0 8px}
+.weapon-section .meta{color:#d9ad58;font:800 10px Inter;letter-spacing:2px;margin-bottom:12px}
+.weapon-section .desc{color:#aeb8c2;line-height:1.7;margin:0 0 18px}
+.table-wrap{overflow-x:auto;border:1px solid rgba(217,173,88,.18);background:#101821}
+.weapon-table{width:100%;border-collapse:collapse;min-width:760px}
+.weapon-table th{text-align:left;padding:13px 14px;background:#172330;color:#d9ad58;font:800 10px Inter;letter-spacing:1.5px}
+.weapon-table td{padding:14px;border-top:1px solid rgba(255,255,255,.06);color:#c8d0d7;font:13px/1.5 Inter;vertical-align:top}
+.weapon-table tr:hover td{background:rgba(217,173,88,.035)}
+.item-link{color:#f2d08a;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(242,208,138,.35)}
+.item-link:hover{color:#fff0c4;border-color:#fff0c4}
+.callout{border-left:3px solid #d9ad58;background:#17212b;padding:16px 18px;color:#b8c1ca;line-height:1.7;margin:18px 0 0}
+.route{color:#f0d18d;font-weight:700}
+@media(max-width:650px){.weapon-page{padding:28px 14px 70px}.weapon-hero{padding:28px 20px}}
 </style>
 </head>
-<body><div class="topline"></div>
-<header class="site-header"><a class="wordmark" href="index.html"><img alt="The Lads crest" class="crest-icon" src="guide-source/images/lads-crest.svg"><span>THE LADS<small>WORLD OF WARCRAFT: FOREVER</small></span></a><nav><a href="index.html">Home</a><a href="guide.html">The Field Guide</a></nav></header>
+<body>
+<div class="topline"></div>
+<header class="site-header">
+<a class="wordmark" href="index.html"><img alt="The Lads crest" class="crest-icon" src="guide-source/images/lads-crest.svg"><span>THE LADS<small>WORLD OF WARCRAFT: FOREVER</small></span></a>
+<nav><a href="index.html">Home</a><a href="index.html#guide">The Field Guide</a></nav>
+</header>
 <main class="weapon-page">
-<section class="weapon-hero"><div class="section-kicker">THE ALLIANCE FIELD GUIDE</div><h1>WEAPON PROGRESSION</h1><p>A deliberately curated list of weapon milestones with links that have been confirmed against WoWhead's Forever database. Rather than keep questionable IDs on the page, unconfirmed mappings have been removed.</p><div class="callout"><strong>How to use this guide:</strong> acquisition levels are approximate. This page is organized by weapon type so shared upgrades are easy to reference. More weapons can be added only once their exact WoWhead Forever item mapping is verified.</div></section>
-<nav class="jump-nav"><a href="#twohand">2H AXES</a><a href="#notes">CLASS NOTES</a></nav>
-<section class="weapon-section" id="twohand"><div class="meta">WARRIOR · ENHANCEMENT SHAMAN · FERAL DRUID</div><h2>🪓 TWO-HANDED AXES</h2><p class="desc">The strongest confirmed shared progression milestones currently on the guide. These four links were individually checked against WoWhead Forever.</p>
-<div class="table-wrap"><table><thead><tr><th>Acquire ~</th><th>Weapon</th><th>Source</th><th>Classes</th><th>Why it matters</th></tr></thead>
-<tbody>
-<tr><td>29+</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=6687/corpsemaker" target="_blank" rel="noopener">[Corpsemaker]</a></td><td>Overlord Ramtusk — Razorfen Kraul</td><td>Warrior · Shaman · Druid</td><td>Excellent early two-handed milestone with strong weapon damage and stats.</td></tr>
-<tr><td>30+</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=6975/whirlwind-axe" target="_blank" rel="noopener">[Whirlwind Axe]</a></td><td>Warrior class quest — Whirlwind Weapon</td><td>Warrior</td><td>Major Warrior-specific milestone; the quest begins at level 30 and can be difficult without help.</td></tr>
-<tr><td>37+</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=7717/ravager" target="_blank" rel="noopener">[Ravager]</a></td><td>Herod — Scarlet Monastery</td><td>Warrior · Shaman · Druid</td><td>High weapon DPS with the famous chance-on-hit area attack effect.</td></tr>
-<tr><td>34+ quest / item level bracket</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=6830/bonebiter" target="_blank" rel="noopener">[Bonebiter]</a></td><td>In the Name of the Light — Scarlet Monastery quest chain</td><td>Warrior · Shaman · Druid</td><td>One of the key Alliance quest-reward weapon milestones and a major upgrade over the Scarlet Monastery bracket.</td></tr>
-</tbody></table></div>
-<div class="callout"><span class="route">Suggested route:</span> Corpsemaker → Whirlwind Axe (Warrior) / Ravager → Bonebiter. Exact acquisition order depends on drops, quest timing, and whether your group can complete the Warrior class quest early.</div>
+<section class="weapon-hero">
+<div class="section-kicker">THE ALLIANCE FIELD GUIDE</div>
+<h1>WEAPON PROGRESSION</h1>
+<p>Weapon milestones are separated strictly by weapon type. Every item kept on this page has a direct WoWhead Forever item page; entries without a confirmed Forever mapping are excluded rather than guessed.</p>
+<div class="callout"><strong>Important:</strong> this is a curated progression reference, not a list of every weapon in the game. We are prioritizing meaningful upgrades for THE LADS and keeping the page clean until additional Forever mappings are individually verified.</div>
 </section>
-<section class="weapon-section" id="notes"><div class="meta">BUILD NOTES</div><h2>CLASS PRIORITY QUICK REFERENCE</h2><div class="callout"><strong>Warrior:</strong> weapon upgrades are among your biggest leveling power spikes; prioritize meaningful two-handed weapon damage upgrades. &nbsp; <strong>Enhancement Shaman:</strong> prioritize strong two-handed weapons and weapon damage. &nbsp; <strong>Feral Druid:</strong> weapon DPS matters in WoW: Forever, so keep your two-hander current. &nbsp; <strong>Rogue & Priest:</strong> their dedicated progression tables were removed from this revision because the existing page contained item IDs that were not confidently validated against WoWhead Forever.</div></section>
+
+<nav class="jump-nav" aria-label="Weapon types">
+<a href="#two-handed-axes">2H AXES</a>
+<a href="#notes">CLASS NOTES</a>
+</nav>
+
+<section class="weapon-section" id="two-handed-axes">
+<div class="meta">TWO-HANDED AXES ONLY</div>
+<h2>🪓 TWO-HANDED AXES</h2>
+<p class="desc">This table contains only two-handed axes. One-handed weapons, maces, swords, daggers, staves, and wands do not belong in this section.</p>
+<div class="table-wrap">
+<table class="weapon-table">
+<thead><tr><th>Required Level</th><th>Weapon</th><th>Source</th><th>Primary Users</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td>29</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=6687/corpsemaker" target="_blank" rel="noopener">[Corpsemaker]</a></td><td>Overlord Ramtusk — Razorfen Kraul</td><td>Warrior · Enhancement Shaman</td><td>Excellent early two-handed axe milestone with strong damage, Strength, and Stamina.</td></tr>
+<tr><td>30</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=6975/whirlwind-axe" target="_blank" rel="noopener">[Whirlwind Axe]</a></td><td>Warrior class quest — Whirlwind Weapon</td><td>Warrior</td><td>Major Warrior-specific upgrade available from the level-30 class quest chain.</td></tr>
+<tr><td>37</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=7717/ravager" target="_blank" rel="noopener">[Ravager]</a></td><td>Herod — Scarlet Monastery: Armory</td><td>Warrior · Enhancement Shaman</td><td>Very high weapon DPS for its level, with its distinctive Whirlwind-style proc.</td></tr>
+<tr><td>34</td><td><a class="item-link" href="https://www.wowhead.com/forever/item=6830/bonebiter" target="_blank" rel="noopener">[Bonebiter]</a></td><td>Alliance reward — In the Name of the Light</td><td>Warrior · Enhancement Shaman</td><td>Key Alliance quest reward and one of the strongest Scarlet Monastery-era two-handed upgrades.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout"><span class="route">Suggested priority:</span> Corpsemaker → Whirlwind Axe for Warriors when practical → Ravager and/or Bonebiter depending on which upgrade you obtain first. Bonebiter is a guaranteed Alliance quest reward, while Ravager depends on a drop.</div>
+</section>
+
+<section class="weapon-section" id="notes">
+<div class="meta">CLASS NOTES</div>
+<h2>HOW THE GROUP SHOULD USE THIS PAGE</h2>
+<div class="callout"><strong>Warrior:</strong> weapon upgrades are major leveling power spikes, so prioritize meaningful two-handed weapon damage upgrades. <strong>Enhancement Shaman:</strong> use the confirmed two-handed milestones that fit your trained weapon skills. <strong>Feral Druid:</strong> Forever weapon scaling should be evaluated separately by confirmed item and weapon mechanics, so no Druid-specific weapon recommendation is listed here without a validated Forever source. <strong>Rogue and Priest:</strong> their weapon-type sections will only be restored after their specific items and WoWhead Forever mappings are individually validated.</div>
+</section>
 </main>
 <footer><a class="wordmark" href="index.html"><img alt="The Lads crest" class="crest-icon" src="guide-source/images/lads-crest.svg"><span>THE LADS<small>WORLD OF WARCRAFT: FOREVER</small></span></a><span>FOR THE ALLIANCE. FOR THE LADS.</span><span class="footer-note">An independent community guide. Not affiliated with Blizzard Entertainment.</span></footer>
-</body></html>
+</body>
+</html>
