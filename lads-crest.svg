@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 104" role="img" aria-label="The Lads crest">
+<defs>
+ <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#315f8b"/><stop offset=".55" stop-color="#173451"/><stop offset="1" stop-color="#091522"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fff0b5"/><stop offset=".38" stop-color="#e8b64f"/><stop offset="1" stop-color="#9e641e"/></linearGradient>
+</defs>
+<path d="M48 3 88 17 83 66 48 99 13 66 8 17Z" fill="#080e16" stroke="url(#gold)" stroke-width="3"/>
+<path d="M48 9 81 21 77 63 48 90 19 63 15 21Z" fill="url(#shield)" stroke="#6f8ba5" stroke-width="1.4"/>
+<path d="M48 19 57 30 70 28 67 41 75 50 64 57 62 71 49 66 37 73 34 59 22 53 31 43 28 30 41 31Z" fill="url(#gold)" stroke="#7b4d19" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M37 37 43 33 48 37 53 33 60 38 57 45 63 49 56 54 55 62 48 58 41 63 40 55 33 51 39 46Z" fill="#18334c" stroke="#8f5d22" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M40 42 45 40 48 44 52 40 57 43 53 48 58 51 51 54 48 52 44 55 39 51 44 47Z" fill="url(#gold)"/>
+<path d="M43 45 46 46M53 45 50 46" stroke="#14263a" stroke-width="2" stroke-linecap="round"/>
+<path d="M45 51 48 53 51 51" fill="none" stroke="#14263a" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M48 12v7M21 24l8 2M75 24l-8 2" stroke="#fff0b5" stroke-opacity=".65" stroke-width="1.3"/>
+<path d="M5 14 13 19 9 29 1 24ZM91 14 83 19 87 29 95 24Z" fill="url(#gold)"/>
+</svg>
