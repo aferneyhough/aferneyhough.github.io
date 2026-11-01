@@ -1106,28 +1106,84 @@ a.wow-item-link:hover, a.wow-item-link:focus-visible { color: #ffe4a0; border-bo
 }
 
 
-/* Weapon Progression: unique armory banner with the same layered reveal animation as the Field Guide cards. */
-.feature-card.weaponprogress-card .weaponprogress-layered-art{position:relative;isolation:isolate;display:block;height:auto;aspect-ratio:3/1;padding:0;overflow:hidden;background:#0b141d}
-.weaponprogress-layered-art img{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;display:block;pointer-events:none}
-.weaponprogress-layered-art .weaponprogress-bg-layer{z-index:0;opacity:1;transform:scale(1.045);filter:blur(2.2px) brightness(.76) saturate(.9);transition:opacity 850ms ease,transform 1.1s cubic-bezier(.2,.75,.2,1),filter 850ms ease}
-.weaponprogress-title-layer{position:absolute;z-index:3;left:50%;top:49%;width:min(76%,760px);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;color:#ffe5a0;text-shadow:0 2px 2px #241506,0 4px 9px rgba(0,0,0,.98),0 0 18px rgba(0,0,0,.9);transition:transform 700ms cubic-bezier(.2,.75,.2,1),filter 700ms ease}
-.weaponprogress-title-layer span{font-family:Cinzel,Georgia,serif;font-size:clamp(19px,3.25vw,42px);font-weight:800;letter-spacing:.055em;line-height:1;text-align:center;color:#ffe6a6;-webkit-text-stroke:.65px #704512;text-shadow:0 1px 0 #fff1c7,0 2px 0 #b47b2c,0 4px 2px #241506,0 7px 12px rgba(0,0,0,.95),0 0 16px rgba(255,190,76,.28);transition:color 600ms ease,text-shadow 600ms ease,letter-spacing 700ms ease}
-.weaponprogress-title-layer i{position:relative;display:block;width:76%;height:2px;margin-top:12px;background:linear-gradient(90deg,transparent,#d99c3c 15%,#fff0b5 50%,#d99c3c 85%,transparent);box-shadow:0 2px 5px #000;transition:width 700ms ease,filter 700ms ease}
-.weaponprogress-title-layer i:after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%) rotate(45deg);border:2px solid #ffe5a0;background:#b77a28;box-shadow:0 0 0 2px rgba(16,21,28,.85),0 0 10px rgba(255,198,89,.35)}
-.weaponprogress-layered-art:after{content:"";position:absolute;z-index:4;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,10,15,.08),rgba(5,10,15,.02) 42%,rgba(5,10,15,.2));box-shadow:inset 0 0 0 1px rgba(217,173,88,.32);transition:box-shadow 650ms ease,background 650ms ease}
-@media (hover:hover) and (pointer:fine){.feature-card.weaponprogress-card:hover .weaponprogress-bg-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-bg-layer{opacity:.24;transform:scale(1.13);filter:blur(1px) brightness(.62) saturate(.72)}.feature-card.weaponprogress-card:hover .weaponprogress-title-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer{transform:translate(-50%,-53%) scale(1.035);filter:brightness(1.12)}.feature-card.weaponprogress-card:hover .weaponprogress-title-layer span,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer span{color:#fff2c8;letter-spacing:.075em;text-shadow:0 1px 0 #fff8dd,0 2px 0 #d99c3c,0 4px 2px #241506,0 7px 14px #000,0 0 24px rgba(255,190,76,.82)}.feature-card.weaponprogress-card:hover .weaponprogress-title-layer i,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer i{width:88%;filter:brightness(1.45) drop-shadow(0 0 5px rgba(255,194,80,.8))}.feature-card.weaponprogress-card:hover .weaponprogress-layered-art:after,.feature-card.weaponprogress-card:focus-visible .weaponprogress-layered-art:after{background:linear-gradient(180deg,rgba(5,10,15,.02),transparent 45%,rgba(5,10,15,.12));box-shadow:inset 0 0 0 2px rgba(255,205,112,.78),inset 0 0 22px rgba(255,183,70,.18)}}
-@media(max-width:620px){.weaponprogress-title-layer{width:90%}.weaponprogress-title-layer span{font-size:clamp(18px,6.5vw,32px)}.weaponprogress-title-layer i{margin-top:8px}}
-@media(prefers-reduced-motion:reduce){.weaponprogress-layered-art img,.weaponprogress-title-layer,.weaponprogress-title-layer span,.weaponprogress-title-layer i,.weaponprogress-layered-art:after{transition:none!important}.feature-card.weaponprogress-card:hover .weaponprogress-bg-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-bg-layer{opacity:1;transform:none;filter:none}.feature-card.weaponprogress-card:hover .weaponprogress-title-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer{transform:translate(-50%,-50%)}}
 
 
-/* Uniform Weapon Progression card — intentionally mirrors the existing Field Guide banner system. */
-.feature-card.weaponprogress-card .weaponprogress-layered-art{position:relative;isolation:isolate;display:block;height:auto;aspect-ratio:3/1;padding:0;overflow:hidden;background:#101923}
-.weaponprogress-layered-art img{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;display:block;pointer-events:none}
-.weaponprogress-layered-art .weaponprogress-bg-layer{z-index:0;opacity:1;transform:scale(1.045);filter:blur(2.2px) brightness(.76) saturate(.88);transition:opacity 850ms ease,transform 1.1s cubic-bezier(.2,.75,.2,1),filter 850ms ease}
-.weaponprogress-title-layer{position:absolute;z-index:3;left:50%;top:49%;width:min(92%,940px);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;color:#ffe5a0;text-shadow:0 2px 2px #241506,0 4px 9px rgba(0,0,0,.98),0 0 18px rgba(0,0,0,.9);transition:transform 700ms cubic-bezier(.2,.75,.2,1),filter 700ms ease}
-.weaponprogress-title-layer span{position:relative;font-family:Cinzel,Georgia,serif;font-size:clamp(17px,2.75vw,38px);font-weight:800;letter-spacing:.055em;line-height:1;white-space:nowrap;text-align:center;color:#ffe6a6;-webkit-text-stroke:.65px #704512;text-shadow:0 1px 0 #fff1c7,0 2px 0 #b47b2c,0 4px 2px #241506,0 7px 12px rgba(0,0,0,.95),0 0 16px rgba(255,190,76,.28);transition:color 600ms ease,text-shadow 600ms ease,letter-spacing 700ms ease}
-.weaponprogress-title-layer i{position:relative;display:block;width:76%;height:2px;margin-top:12px;background:linear-gradient(90deg,transparent,#d99c3c 15%,#fff0b5 50%,#d99c3c 85%,transparent);box-shadow:0 2px 5px #000;transition:width 700ms ease,filter 700ms ease}
-.weaponprogress-title-layer i:after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%) rotate(45deg);border:2px solid #ffe5a0;background:#b77a28;box-shadow:0 0 0 2px rgba(16,21,28,.85),0 0 10px rgba(255,198,89,.35)}
-.weaponprogress-layered-art:after{content:"";position:absolute;z-index:4;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,10,15,.08),rgba(5,10,15,.02) 42%,rgba(5,10,15,.2));box-shadow:inset 0 0 0 1px rgba(217,173,88,.32);transition:box-shadow 650ms ease,background 650ms ease}
-@media (hover:hover) and (pointer:fine){.feature-card.weaponprogress-card:hover .weaponprogress-bg-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-bg-layer{opacity:.24;transform:scale(1.13);filter:blur(1px) brightness(.62) saturate(.72)}.feature-card.weaponprogress-card:hover .weaponprogress-title-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer{transform:translate(-50%,-53%) scale(1.035);filter:brightness(1.12)}.feature-card.weaponprogress-card:hover .weaponprogress-title-layer span,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer span{color:#fff2c8;letter-spacing:.075em;text-shadow:0 1px 0 #fff8dd,0 2px 0 #d99c3c,0 4px 2px #241506,0 7px 14px #000,0 0 24px rgba(255,190,76,.82)}.feature-card.weaponprogress-card:hover .weaponprogress-title-layer i,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer i{width:88%;filter:brightness(1.45) drop-shadow(0 0 5px rgba(255,194,80,.8))}.feature-card.weaponprogress-card:hover .weaponprogress-layered-art:after,.feature-card.weaponprogress-card:focus-visible .weaponprogress-layered-art:after{background:linear-gradient(180deg,rgba(5,10,15,.02),transparent 45%,rgba(5,10,15,.12));box-shadow:inset 0 0 0 2px rgba(255,205,112,.78),inset 0 0 22px rgba(255,183,70,.18)}}
-@media(max-width:620px){.weaponprogress-title-layer{width:94%}.weaponprogress-title-layer span{font-size:clamp(15px,5.6vw,28px)}.weaponprogress-title-layer i{margin-top:8px}}
+/* Weapon Progression — same Field Guide banner system as the other section cards. */
+.weaponprogress-layered-art{
+  position:relative; isolation:isolate; display:block; height:auto; aspect-ratio:3/1;
+  padding:0; overflow:hidden; background:#101923;
+}
+.weaponprogress-layered-art img{
+  position:absolute; inset:0; width:100%; height:100%; max-width:none; max-height:none;
+  object-fit:cover; display:block; pointer-events:none;
+}
+.weaponprogress-layered-art .weaponprogress-bg-layer{
+  z-index:0; opacity:1; transform:scale(1.045);
+  filter:blur(2.2px) brightness(.76) saturate(.88);
+  transition:opacity 850ms ease, transform 1.1s cubic-bezier(.2,.75,.2,1), filter 850ms ease;
+}
+.weaponprogress-title-layer{
+  position:absolute; z-index:3; left:50%; top:49%; width:min(78%,760px);
+  transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center;
+  pointer-events:none; color:#ffe5a0;
+  text-shadow:0 2px 2px #241506,0 4px 9px rgba(0,0,0,.98),0 0 18px rgba(0,0,0,.9);
+  transition:transform 700ms cubic-bezier(.2,.75,.2,1), filter 700ms ease;
+}
+.weaponprogress-title-layer span{
+  position:relative; font-family:Cinzel,Georgia,serif;
+  font-size:clamp(18px,3vw,39px); font-weight:800; letter-spacing:.075em; line-height:1;
+  text-align:center; white-space:nowrap; color:#ffe6a6; -webkit-text-stroke:.65px #704512;
+  text-shadow:0 1px 0 #fff1c7,0 2px 0 #b47b2c,0 4px 2px #241506,0 7px 12px rgba(0,0,0,.95),0 0 16px rgba(255,190,76,.28);
+  transition:color 600ms ease, text-shadow 600ms ease, letter-spacing 700ms ease;
+}
+.weaponprogress-title-layer i{
+  position:relative; display:block; width:76%; height:2px; margin-top:12px;
+  background:linear-gradient(90deg,transparent,#d99c3c 15%,#fff0b5 50%,#d99c3c 85%,transparent);
+  box-shadow:0 2px 5px #000; transition:width 700ms ease, filter 700ms ease;
+}
+.weaponprogress-title-layer i:after{
+  content:""; position:absolute; left:50%; top:50%; width:12px; height:12px;
+  transform:translate(-50%,-50%) rotate(45deg); border:2px solid #ffe5a0;
+  background:#b77a28; box-shadow:0 0 0 2px rgba(16,21,28,.85),0 0 10px rgba(255,198,89,.35);
+}
+.weaponprogress-layered-art:after{
+  content:""; position:absolute; z-index:4; inset:0; pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,10,15,.08),rgba(5,10,15,.02) 42%,rgba(5,10,15,.2));
+  box-shadow:inset 0 0 0 1px rgba(217,173,88,.32);
+  transition:box-shadow 650ms ease, background 650ms ease;
+}
+@media (hover:hover) and (pointer:fine){
+ .feature-card.weaponprogress-card:hover .weaponprogress-bg-layer,
+ .feature-card.weaponprogress-card:focus-visible .weaponprogress-bg-layer{
+   opacity:.24; transform:scale(1.13); filter:blur(1px) brightness(.62) saturate(.72);
+ }
+ .feature-card.weaponprogress-card:hover .weaponprogress-title-layer,
+ .feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer{
+   transform:translate(-50%,-53%) scale(1.035); filter:brightness(1.12);
+ }
+ .feature-card.weaponprogress-card:hover .weaponprogress-title-layer span,
+ .feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer span{
+   color:#fff2c8; letter-spacing:.095em;
+   text-shadow:0 1px 0 #fff8dd,0 2px 0 #d99c3c,0 4px 2px #241506,0 7px 14px #000,0 0 24px rgba(255,190,76,.82);
+ }
+ .feature-card.weaponprogress-card:hover .weaponprogress-title-layer i,
+ .feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer i{
+   width:88%; filter:brightness(1.45) drop-shadow(0 0 5px rgba(255,194,80,.8));
+ }
+ .feature-card.weaponprogress-card:hover .weaponprogress-layered-art:after,
+ .feature-card.weaponprogress-card:focus-visible .weaponprogress-layered-art:after{
+   background:linear-gradient(180deg,rgba(5,10,15,.02),transparent 45%,rgba(5,10,15,.12));
+   box-shadow:inset 0 0 0 2px rgba(255,205,112,.78),inset 0 0 22px rgba(255,183,70,.18);
+ }
+}
+.feature-card.weaponprogress-card:focus-visible{outline:2px solid #f1c46c;outline-offset:4px;}
+@media(max-width:620px){
+ .weaponprogress-title-layer{width:90%;}
+ .weaponprogress-title-layer span{font-size:clamp(16px,5vw,28px);}
+ .weaponprogress-title-layer i{margin-top:8px;}
+}
+@media(prefers-reduced-motion:reduce){
+ .weaponprogress-layered-art img,.weaponprogress-title-layer,.weaponprogress-title-layer span,.weaponprogress-title-layer i,.weaponprogress-layered-art:after{transition:none!important;}
+ .feature-card.weaponprogress-card:hover .weaponprogress-bg-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-bg-layer{opacity:1;transform:none;filter:none;}
+ .feature-card.weaponprogress-card:hover .weaponprogress-title-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer{transform:translate(-50%,-50%);}
+}
