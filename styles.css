@@ -1209,3 +1209,7 @@ a.wow-item-link:hover, a.wow-item-link:focus-visible { color: #ffe4a0; border-bo
   .weaponprogress-title-layer{width:94% !important;}
   .weaponprogress-title-layer span{font-size:clamp(14px,4.8vw,24px);}
 }
+
+
+/* Launch countdown */
+.launch-countdown{background:linear-gradient(180deg,#10151c 0%,#151d26 100%);border-top:1px solid rgba(210,174,94,.2);border-bottom:1px solid rgba(210,174,94,.2);padding:32px 20px 30px;text-align:center}.countdown-inner{max-width:920px;margin:0 auto}.countdown-kicker{font-family:Cinzel,serif;font-size:12px;letter-spacing:.2em;color:#d7b76b;font-weight:800;margin-bottom:14px}.countdown-display{display:flex;justify-content:center;align-items:center;gap:16px}.countdown-display>div{min-width:105px;padding:10px 8px;background:rgba(255,255,255,.035);border:1px solid rgba(215,183,107,.18);border-radius:6px}.countdown-display strong{display:block;font-family:Cinzel,serif;font-size:38px;line-height:1;color:#f2ead6}.countdown-display span{display:block;margin-top:7px;font-size:9px;letter-spacing:.16em;color:#9aa5b1;font-weight:800}.countdown-display i{font-style:normal;font-family:Cinzel,serif;font-size:26px;color:#b9984f}.countdown-date{margin-top:15px;font-size:11px;font-weight:800;letter-spacing:.15em;color:#aeb7c2}@media(max-width:620px){.launch-countdown{padding:26px 10px}.countdown-display{gap:5px}.countdown-display>div{min-width:0;flex:1;padding:10px 3px}.countdown-display strong{font-size:25px}.countdown-display i{display:none}.countdown-display span{font-size:7px;letter-spacing:.1em}}
