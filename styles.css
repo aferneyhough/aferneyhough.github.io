@@ -1187,3 +1187,25 @@ a.wow-item-link:hover, a.wow-item-link:focus-visible { color: #ffe4a0; border-bo
  .feature-card.weaponprogress-card:hover .weaponprogress-bg-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-bg-layer{opacity:1;transform:none;filter:none;}
  .feature-card.weaponprogress-card:hover .weaponprogress-title-layer,.feature-card.weaponprogress-card:focus-visible .weaponprogress-title-layer{transform:translate(-50%,-50%);}
 }
+
+
+/* Weapon Progression title fit: keep the full label inside the section banner. */
+.weaponprogress-title-layer{
+  width:94% !important;
+  max-width:94%;
+}
+.weaponprogress-title-layer span{
+  display:block;
+  width:100%;
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  text-wrap:balance;
+  font-size:clamp(14px,2.05vw,27px);
+  line-height:1.05;
+  letter-spacing:.045em;
+}
+@media(max-width:620px){
+  .weaponprogress-title-layer{width:94% !important;}
+  .weaponprogress-title-layer span{font-size:clamp(14px,4.8vw,24px);}
+}
