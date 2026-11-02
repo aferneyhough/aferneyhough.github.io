@@ -1252,3 +1252,9 @@ a.wow-item-link:hover, a.wow-item-link:focus-visible { color: #ffe4a0; border-bo
 .spell-table .spell-icon-img{display:inline-block;width:20px;height:20px;min-width:20px;object-fit:cover;vertical-align:middle;border-radius:2px;border:1px solid rgba(217,173,88,.28);margin:0}
 .spell-table .spell-name-link strong{line-height:20px}
 .spell-table .spell-rank{margin-left:3px;white-space:nowrap}
+
+/* Extra-compact inline spell icons */
+.spell-table .spell-name-link{display:inline-flex!important;align-items:center!important;gap:5px!important;line-height:1.2!important}
+.spell-table .spell-name-link .spell-icon-img{display:block!important;width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;max-height:16px!important;object-fit:cover!important;flex:0 0 16px!important;margin:0!important;padding:0!important;vertical-align:middle!important;border-radius:2px}
+.spell-table .spell-name-link strong{display:inline!important;line-height:16px!important}
+.spell-table .spell-name-link .spell-rank{align-self:center}
