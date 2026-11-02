@@ -1245,3 +1245,10 @@ a.wow-item-link:hover, a.wow-item-link:focus-visible { color: #ffe4a0; border-bo
 .talent-calculator-card h3{margin:8px 0;font-size:20px}.talent-calculator-card p{margin:0;color:var(--muted);line-height:1.65}
 .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.stat-card{padding:20px;background:linear-gradient(145deg,#17222d,#10171f);border:1px solid rgba(217,173,88,.18)}.stat-card h3{margin:0 0 9px;color:var(--gold2);font-size:12px;letter-spacing:1px}.stat-card strong{display:block;font-size:17px;margin-bottom:9px}.stat-card p{font-size:12px;color:var(--muted);line-height:1.65;margin:0}.stat-card code{font-size:11px;color:#d9ad58}.formula-box{padding:22px;margin:22px 0;background:#111a22;border-left:3px solid var(--gold)}.formula-box h3{margin-top:0}.formula-box p{margin:8px 0;color:#c6d0d9}.quest-table-wrap{overflow:auto;border:1px solid rgba(217,173,88,.22);margin:18px 0}.quest-table{min-width:760px;margin:0!important}.quest-table a{color:var(--gold2);font-weight:700;text-decoration:none}.quest-table a:hover{text-decoration:underline}.spell-icon{display:inline-grid;place-items:center;width:28px;height:28px;margin-right:9px;vertical-align:middle;border:1px solid rgba(217,173,88,.35);background:linear-gradient(135deg,#263747,#111820);font-size:14px}.trainer-cost{color:#aeb9c3;font-size:11px}
 @media(max-width:900px){.stat-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.stat-grid{grid-template-columns:1fr}.talent-calculator-card{align-items:flex-start;flex-direction:column}}
+
+/* Compact inline spellbook icons */
+.spell-table td:first-child{white-space:nowrap}
+.spell-table .spell-name-link{display:inline-flex;align-items:center;gap:7px;vertical-align:middle}
+.spell-table .spell-icon-img{display:inline-block;width:20px;height:20px;min-width:20px;object-fit:cover;vertical-align:middle;border-radius:2px;border:1px solid rgba(217,173,88,.28);margin:0}
+.spell-table .spell-name-link strong{line-height:20px}
+.spell-table .spell-rank{margin-left:3px;white-space:nowrap}
